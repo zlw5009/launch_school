@@ -4,25 +4,32 @@
 # perform the operation on the two numbers
 # output the result
 
-puts "Welcome to the Calculator!"
-
-puts " Whats the first number?"
-number1 = gets.chomp.to_i
-
-puts "What's the second number?"
-number2 = gets.chomp.to_i
-
-puts "Enter an operation: add, subtract, multiply, divide"
-operator = gets.chomp.to_s
-
-if operator == "add"
-	answer = number1 + number2
-elsif operator == "subtract"
-	answer = number1 - number2
-elsif operator == "multiply"
-	answer = number1 * number2
-else
-	answer = number1.to_f / number2.to_f
+def prompt(message)
+	puts("=> #{message}")
 end
 
-puts "The answer = #{answer}!"
+
+prompt("Welcome to the Calculator!")
+
+prompt("Whats the first number?")
+number1 = gets.chomp.to_i
+
+prompt("What's the second number?")
+number2 = gets.chomp.to_i
+
+prompt("Enter an operation: add, subtract, multiply, divide")
+operator = gets.chomp.to_s
+
+answer = case operator
+	when "add"
+		number1 + number2
+	when "subtract"
+		number1 - number2
+	when "multiply"
+		number1 * number2
+	when "divide"
+		number1.to_f / number2.to_f
+	end
+
+
+prompt("The answer = #{answer}!")

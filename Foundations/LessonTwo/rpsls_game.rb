@@ -6,6 +6,8 @@
 # could use a nested array
 
 VALID_CHOICES = %w(rock paper scissors lizard spock)
+user_score = 0
+computer_score = 0
 
 def prompt(msg)
   puts("=> #{msg}")
@@ -53,8 +55,6 @@ def display_results(player, computer)
 end
 
 loop do
-  user_score = 0
-  computer_score = 0
 
     choice = ''
     loop do
@@ -83,12 +83,11 @@ loop do
     computer_choice = VALID_CHOICES.sample
     prompt("You chose #{choice}, the computer chose #{computer_choice}.")
 
-    winner = display_results(choice, computer_choice)
-    prompt(who_won)
+    display_results(choice, computer_choice)
   
-    if winner == 'WINNER!!' 
+    if win?(choice, computer_choice) 
       user_score = user_score + 1
-    elsif winner == 'You lost!' 
+    elsif win?(computer_choice, choice) 
       computer_score = computer_score + 1
     end
   

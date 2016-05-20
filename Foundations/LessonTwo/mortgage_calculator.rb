@@ -24,13 +24,13 @@ def prompt(msg)
 	puts ("=> #{msg}")
 end
 
-def two_decimal(num)
+def two_decimal_places(num)
 	num = sprintf "%.2f", num
 end
 
 prompt("Let's calculate your monthly loan payment!")
 
-loop do
+loop do # main loop
 
 	prompt("What is the loan amount?")
 
@@ -78,8 +78,8 @@ loop do
 	monthly_payment = ((loan_amt.to_f * (int_rate* (1 + int_rate) ** duration.to_i)) /
 										((1 + int_rate) ** duration.to_i - 1))
 
-	prompt("The monthly payment on this loan for #{two_decimal(loan_amt)} at an APR 
-				of #{apr}% over #{duration} months is #{two_decimal(monthly_payment)}!")
+	prompt("The monthly payment on this loan for #{two_decimal_places(loan_amt)} at an APR 
+				of #{apr}% over #{duration} months is #{two_decimal_places(monthly_payment)}!")
 
 	prompt("Would you like to calculate another loan: Yes or No?")
 	answer = gets.chomp

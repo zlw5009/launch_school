@@ -1,19 +1,40 @@
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+
 # Pseudo Code
 # ask the user for two numbers
 # ask the user for an operation to perform
 # perform the operation on the two numbers
 # output the result
 
+# Better integer validation for '0'
+# get input from the user
+# if the input is not a number
+# it is not a valid input
+# compare the input to itself after turning it
+# into an integer then back into a string
+
+
 def prompt(message)
 	puts("=> #{message}")
 end
 
-def valid_number?(num)
-	num.to_i != 0
+def integer?(input)
+	input.to_i.to_s == input
+	input.to_i
 end
 
+def float?(input)
+	input.to_f.to_s == input
+	input.to_f
+end
 
-prompt("Welcome to the Calculator! Enter your name:")
+def number?(input)
+	integer?(input) || float?(input)
+end 
+
+
+prompt(MESSAGES['welcome'])
 
 name = ''
 
@@ -21,47 +42,47 @@ loop do
 	name = gets.chomp
 
 	if name.empty?
-		prompt("Make sure you enter a valid name.")
-	else 
+		prompt(MESSAGES['valid_name'])
+	else
 		break
 	end
 end
 
-prompt("Hi #{name}")
+prompt(MESSAGES['greeting'] + "#{name} :)")
 
 loop do # main loop
 	number1 = ''
 
 	loop do
-		prompt("Whats the first number?")
+		prompt(MESSAGES['first_num'])
 		number1 = gets.chomp.to_i
 
-		if valid_number?(number1)
+		if number?(number1)
 			break
 		else 
-			prompt("That doesn't look like a valid number!")
+			prompt(MESSAGES['valid_number'])
 		end
 	end
 
 	number2 = ''
 
 	loop do
-		prompt("What's the second number?")
+		prompt(MESSAGES['second_num'])
 		number2 = gets.chomp.to_i
 
-		if valid_number?(number2)
+		if number?(number2)
 			break
 		else
-			prompt("That's not a valid number, please try again!")
+			prompt(MESSAGES['valid_number'])
 		end
 	end 
 
 	operator_prompt = <<-MSG
-		What operation would you like to perform?
-		Add
-		Subtract
-		Multiply
-		Divide
+	What operation would you like to perform?
+	Add
+	Subtract
+	Multiply
+	Divide
 	MSG
 
 	prompt(operator_prompt)
@@ -73,27 +94,27 @@ loop do # main loop
 		if %w(add subtract multiply divide).include?(operator)
 			break
 		else 
-			prompt("Must choose a valid operation for the calculator to perform")
+			prompt(MESSAGES['valid_operator'])
 		end
 	end
 
 	answer = case operator
 					 when "add"
-					 		number1 + number2
+						 number1 + number2
 					 when "subtract"
-		 					number1 - number2
-	 				 when "multiply"
-			 				number1 * number2
-		 			 when "divide"
-							number1.to_f / number2.to_f
+						 number1 - number2
+					 when "multiply"
+						 number1 * number2
+					 when "divide"
+					 	 number1.to_f / number2.to_f
 					 end
 
 
-	prompt("The answer = #{answer}!")
+	prompt(MESSAGES['answer'] + "#{answer}!")
 
-	prompt("Would you like to perform another calculation, Yes or No?")
+	prompt(MESSAGES['another_calc'])
 	another_calc = gets.chomp
-			break unless another_calc.downcase.start_with?('y')
-			end
+	break unless another_calc.downcase.start_with?('y')
+end
 
-prompt("Thanks for using our calculator, #{name}! Goodbye.")
+prompt(MESSAGES['goodbye'] + "#{name}! Goodbye!!")

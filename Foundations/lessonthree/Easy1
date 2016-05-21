@@ -1,0 +1,61 @@
+# Question 1 
+# I would expect the output to be [1, 2, 2, 3]
+# this is because the uniq method eliminates repeated numbers
+# but the method is not mutating the object nor was it assigned 
+# to a new variable so therefore the numbers variable is printed out
+# in its original format
+
+# Question 2
+# The difference between the ! and ? are as follows:
+# The ! is used to signify as a destructive/mutation 
+# operation to a method when it is attached at the end of the
+# method name.
+# A ? is a ternary operator and is also used at the end of
+# method calls as a language expression to signify that
+# we are questions if something is true/false but does not
+# actually do anything to the method. 
+# A ? can also be used in an expression for if/then statements.
+# Ex: if 5 > 4 ? (do something here if true) : (or do something here if false)
+# 2.1. != means DOES NOT equal and should be used in expressions
+# like 5 != 4. 
+# 2.2. ! before an object such as !user_name would equate to a not operator
+# such as !user_name.nil? 
+# 2.3. words.uniq! would take the array words and mutate that words array so that
+# there are no repeated "words" in the words array.
+# 2.4. ? before just relates an if...else statement
+# 2.5. ? after something was explained above
+# 2.6. !! before something would return the object's boolean equivalent so it 
+# would be like does not "not" equal such and such
+
+# Question 3
+# advice.gsub!("important", "urgent")
+# gsub is a replacement method such as regexp. It will replace words
+# in a string with the associated words. It takes two perimeters as shown above
+
+# Question 4
+# numbers.delete_at(1) will delete the object at the #1 index
+# numbers.delete(1) will search the array for the object 1 and delete it. 
+# Both of these methods MUTATE the caller
+
+# Questions 5
+(10..100).cover?(42)
+
+# Question 6
+famous_words = "Four score and " + "seven years ago..."
+famous_words.prepend("Four score and ")
+
+# Question 7
+42
+
+# Question 8
+flintstones.flatten!
+
+# Question 9
+flintstones.assoc("Barney")
+
+# Question 10
+flintstones_hash = {}
+flintstones.each_with_index {|name, index| flintstones_hash[name] = index}
+
+
+

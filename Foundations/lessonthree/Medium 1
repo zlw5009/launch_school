@@ -1,0 +1,46 @@
+Question 1
+
+10.times { |num| puts (" " * num) + "The Flintstones Rock!"}
+
+Question 2
+
+statement = "The Flintstones Rock"
+
+result = {}
+letters = ('A'..'Z').to_a + ('a'..'z').to_a
+letters.each do |letter|
+  letter_frequency = statement.scan(letter).count
+  result[letter] = letter_frequency if letter_frequency > 0
+end
+
+Question 3
+
+puts "the value of 40 + 2 is " + (40 + 2).to_s
+or 
+number = 40 + 2 
+puts "the value of 40 + 2 is #{number}"
+or
+puts "the value of 40 + 2 is #{40 + 2}"
+
+Question 5
+
+def factors(number)
+  dividend = number
+  divisors = []
+  begin
+    divisors << number / dividend if number % dividend == 0
+    dividend -= 1
+  end until dividend == 0
+  divisors
+end
+
+def factors(number)
+  dividend = number
+  divisors = []
+
+  while dividend > 0 do
+    divisors << number / dividend if number % dividend == 0
+    dividend -= 1
+  end
+  divisors
+end

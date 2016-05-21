@@ -1,0 +1,33 @@
+Question 1
+flintstones = ["Fred", "Barney", "Wilma", "Betty", "BamBam", "Pebbles"]
+
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+Question 2
+flintstones.push("Dino")
+or
+flintstones << "Dino"
+
+Question 3
+flintstones.push("Dino").push("Hoppy")
+or
+flintstones.concat(%w(Dino Hoppy))
+
+Question 4
+advice.slice!(0, advice.index('house'))
+
+if you used slice, it would return the first part of the sentence but
+ the variable would remain unchanged.
+
+Question 5
+statement.scan('t').count
+
+scan goes through the string and matches the perimeter given to 
+determine if that perimeter is within the string
+if so, count will count how many times it is. 
+
+Question 6
+title.center(40)
+
+
+

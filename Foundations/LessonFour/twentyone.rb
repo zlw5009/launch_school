@@ -1,32 +1,32 @@
 # Twenty-one
-SUITS = %w(H D C S)
+SUITS = %w(H D C S).freeze
+BLACKJACK = 21
 
 def prompt(msg)
   puts "=> #{msg}"
 end
 
-# Creates the deck of cards
+def clear_screen
+  system('clear') || system('cls')
+end
+
 def initialize_deck
-  cards = [*2..10]
-  cards += %w(J Q K A)
+  cards = [*2..10] + %w(J Q K A)
   cards.product(SUITS)
 end
 
-# Deals a card to the selected player
-def deal_cards(deck, player)
+def deal_card(deck, player)
   player << deck.shuffle!.shift
 end
 
-# Deals the initial hands to both dealer and player
 def setup_initial_hands(deck, player_cards, dealer_cards)
   2.times do
-    deal_cards(deck, player_cards)
-    deal_cards(deck, dealer_cards)
+    deal_card(deck, player_cards)
+    deal_card(deck, dealer_cards)
   end
   display_board_players_turn(player_cards, dealer_cards)
 end
 
-# Display's UI for cards
 def display_dealers_initial_hand(card_one, _card_two)
   puts ""
   puts "+" + "-" * 11 + "+" + "  " + "+" + "-" * 11 + "+\n" \
@@ -84,7 +84,6 @@ def render_cards(hand)
   puts part_nine.join
 end
 
-# Calc the # of Aces
 def number_of_aces(hand)
   aces = 0
 
@@ -96,9 +95,8 @@ def number_of_aces(hand)
   aces
 end
 
-# Calc the total score of all cards but Aces
 def total_cards_not_aces(hand)
-total = 0 
+  total = 0
 
   hand.each do |card|
     if card[0] != 'A' && card[0].to_i == 0
@@ -107,10 +105,9 @@ total = 0
       total += card[0]
     end
   end
-total
+  total
 end
 
-# Calc the total value of all cards
 def cards_total(hand)
   total = 0
 
@@ -121,30 +118,28 @@ def cards_total(hand)
   else
     total = total_cards_not_aces(hand)
   end
-total
+  total
 end
 
-# Determines if a player busts
 def busted?(hand)
-  cards_total(hand) > 21
+  cards_total(hand) > BLACKJACK
 end
 
 def display_board_players_turn(player_cards, dealer_cards)
-  system('clear') || system('cls')
+  clear_screen
   display_dealers_initial_hand(*dealer_cards)
   render_cards(player_cards)
   puts "Player: #{cards_total(player_cards)}"
 end
 
 def display_board_dealers_turn(player_cards, dealer_cards)
-  system('clear') || system('cls')
   render_cards(dealer_cards)
   render_cards(player_cards)
   puts "Player: #{cards_total(player_cards)}"
   puts "Dealer: #{cards_total(dealer_cards)}"
 end
 
-loop do # Main loop
+loop do # Main
   deck = initialize_deck
   player_cards = []
   dealer_cards = []
@@ -153,11 +148,11 @@ loop do # Main loop
   loop do # Players turn
     display_board_players_turn(player_cards, dealer_cards)
     prompt "Hit or Stay?"
-    answer = gets.chomp
-    if answer.downcase == 'stay'
+    answer = gets.chomp.downcase
+    if answer == 'stay'
       break
-    elsif answer.downcase == 'hit'
-      deal_cards(deck, player_cards)
+    elsif answer == 'hit'
+      deal_card(deck, player_cards)
     end
     break if busted?(player_cards)
   end
@@ -165,11 +160,11 @@ loop do # Main loop
   unless busted?(player_cards)
     loop do # Dealers turn
       display_board_dealers_turn(player_cards, dealer_cards)
-      if cards_total(dealer_cards) > cards_total(player_cards) || 
+      if cards_total(dealer_cards) >= 17 ||
          cards_total(dealer_cards) == 21
         break
       else
-        deal_cards(deck, dealer_cards)
+        deal_card(deck, dealer_cards)
       end
     end
   end
@@ -182,11 +177,13 @@ loop do # Main loop
     prompt "BUST!! You Lose!"
   elsif cards_total(player_cards) < cards_total(dealer_cards)
     prompt "The Dealer had a better hand; You Lose!!"
+  elsif cards_total(player_cards) > cards_total(dealer_cards)
+    prompt "You have a better hand than the dealer. You WIN!!"
   else
     prompt "You both got 21. It's a tie!!"
   end
 
   prompt "Would you like to play again: Yes or No?"
-  play_again = gets.chomp
-  break if !play_again.downcase.start_with?('y')
-end 
+  play_again = gets.chomp.downcase
+  break if !play_again.start_with?('y')
+end

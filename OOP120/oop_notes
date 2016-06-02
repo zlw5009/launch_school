@@ -1,0 +1,103 @@
+Encapsulation - hiding pieces of funcitonality and making it unavailable
+  to the rest of the code base. Protects data so that it cannot by 
+  manipulated or changed without obvious intention.
+
+Polymorphism - the ability for data to be represented as many different types.
+  "Poly" stands for "many" and "morph" stands for "forms".
+
+Inheritance - used where a class inherits the behaviors of another class, 
+  referred to as the superclass. 
+
+Modules - are similar to classes - contain shared behavior. 
+  CANNOT create an object with a module. Must be mixed in with a class
+  using include; called a mixin. *A collection of behaviors that is useable
+  in other classes via mixins. 
+
+  module Speak
+    def speak(some_sound)
+      puts "#{sound}"
+    end
+  end
+
+  Called in a class:
+
+  class HumanBeing
+    include Speak
+  end
+
+  class GoodDog
+    include Speak
+  end
+
+Classes - the basic outlines of what an object should be made of
+  and what is should be able to do. Defined as: def ThisIsAClass (CamelCase)
+
+Instantiation - the workflow of creating a new object or instance from a class.
+
+When defining a class, focus on two things: states & behaviors.
+  States track attributes for individual objects.
+  Behaviors are what objects are capable of doing. 
+
+Instance variables are scope at the object (or instance) level,
+  and are how objects keep track of their states. 
+
+Instance methods defined in a class are available to objects (or instances)
+  of that class. 
+
+Instance variable keep track of the state; Instance methods expose behaviors for objects. 
+
+The initialize method gets called everytime you create a new object. 
+  Is a constructor because it gets triggered whenever we create a new object.
+
+An instance variable is a variable that exists as long as the object instance exists and it 
+  is one of the ways we tie data to objects. It doesnt die after the initialize method is run.
+
+Instance variables are responsible for keeping track of information about the STATE of an object. 
+
+Instance methods have access to instance variables. 
+
+attr_accessor method takes a symbol as an argument, which it uses to create the method name
+  for the getter and setter methods. 
+    - If we only want a getter method: attr_reader
+    - If we only want a setter method: attr_writer
+
+Class Methods - methods we can call directly on the class itself, without having to 
+  instantiate any objects. 
+  When defining a class method, we prepend the method name with the reserved word `self`. 
+  def self.tot_num_of_dogs
+
+Objects contain state, and if we have a method that does not need to deal with states,
+  then we can just use a class method. 
+
+Class Variables - @@number_of_dogs - used to create variables for an entire class
+
+Contants - A variable that is never changed and is defined with a capital letter first;
+  although, it is good practice to capitalize all the letters. DOG_YEARS = 7
+
+::SELF::
+
+`self` is used to specify a certain scope for our program. `self` can refer to different
+things depending on where it is used. 
+  1. Use `self` when calling setter methods from within the class. This is to allow Ruby
+    to disambiguate between initializing a local variable and called a setter method.
+
+  2. Use `self` for class method definitions.
+
+  From within a class...
+    1. `self`, inside of an instance method, references the instance (object)
+      that called the method - the calling object. Therefore self.weight= 
+      is the same as some_object.weight=. 
+
+    2. `self`, outside of an instance method, references the class and can be used
+      to define class methods. Therefore, def self.name=(n) is the same as
+      def SomeClass.name=(n). 
+
+
+
+
+
+
+
+
+
+

@@ -79,7 +79,7 @@ Contants - A variable that is never changed and is defined with a capital letter
 `self` is used to specify a certain scope for our program. `self` can refer to different
 things depending on where it is used. 
   1. Use `self` when calling setter methods from within the class. This is to allow Ruby
-    to disambiguate between initializing a local variable and called a setter method.
+    to disambiguate between initializing a local variable and calling a setter method.
 
   2. Use `self` for class method definitions.
 
@@ -92,8 +92,30 @@ things depending on where it is used.
       to define class methods. Therefore, def self.name=(n) is the same as
       def SomeClass.name=(n). 
 
+`self` is a way of being explicit about what our program is referencing and what our 
+  intentions are as far as behavior. 
 
 
+Notes between instance variable and instance method:
+- when we are setting a variable, we need it use @some_variable
+- if we are using a getter/setter method, this is referring to a 
+  instance method, therefore, when referencing that method, we want to 
+  remove the @ sign and just call the name. This is when using attr_*
+
+
+Inheritance is when a class inherits behavior from another class. The class inheriting the
+  behavior is called the subclass and the class it inherits from is called the superclass. 
+  - Used as a way to extract common behaviors from classes that share behavior. 
+  - Use the `<` operator to signify that a class is inheriting from a superclass
+  - If a class uses the same methods, it will override the superclass method
+    and utilize this class specific method. 
+
+Inheritance vs. Modules 
+- You can only subclass from one class; you can mix in as many modules as you like
+- If it is an "is-a" relationship, choose inheritance. If it is a "has-a" relationship,
+  choose modules. Ex. a dog "is an" animal; a dog "has an" ability to swim.
+- You cannot instantiate modules (ex. no object can be created from a module)
+  Modules are used only for namespacing and grouping common methods together.
 
 
 

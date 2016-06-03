@@ -1,5 +1,5 @@
 Encapsulation - hiding pieces of funcitonality and making it unavailable
-  to the rest of the code base. Protects data so that it cannot by 
+  to the rest of the code base. Protects data so that it cannot be 
   manipulated or changed without obvious intention.
 
 Polymorphism - the ability for data to be represented as many different types.

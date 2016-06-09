@@ -1,5 +1,41 @@
 # Rock, Paper, Scissors game
 
+module Displayable
+  def display_welcome_message
+    puts "Welcome, #{human.name} to Rock, Paper, Scissors!"
+  end
+
+  def display_goodbye_message
+    puts "Goodbye, #{human.name.capitalize}!"
+  end
+
+  def display_score
+    puts "#{human.name}'s Score: #{human.score}"
+    puts "#{computer.name}'s Score: #{computer.score}"
+  end
+
+  def display_moves
+    puts "#{human.name.capitalize} chose #{human.move}."
+    puts "#{computer.name} chose #{computer.move}."
+  end
+
+  def display_winner
+    if human.move > computer.move
+      human.increment_score
+      puts "You won!"
+    elsif human.move < computer.move
+      computer.increment_score
+      puts "#{computer.name} won!"
+    else
+      puts "It's a tie!"
+    end
+  end
+
+  def clear_screen
+    system("clear") || system("cls")
+  end
+end
+
 class Move
   VALUES = %w(rock paper scissors).freeze
 
@@ -85,41 +121,13 @@ class Computer < Player
 end
 
 class RPSGame
+  include Displayable
+
   attr_accessor :human, :computer
 
   def initialize
     @human = Human.new
     @computer = Computer.new
-  end
-
-  def display_welcome_message
-    puts "Welcome, #{human.name} to Rock, Paper, Scissors!"
-  end
-
-  def display_goodbye_message
-    puts "Goodbye, #{human.name.capitalize}!"
-  end
-
-  def display_moves
-    puts "#{human.name.capitalize} chose #{human.move}."
-    puts "#{computer.name} chose #{computer.move}."
-  end
-
-  def display_winner
-    if human.move > computer.move
-      human.increment_score
-      puts "You won!"
-    elsif human.move < computer.move
-      computer.increment_score
-      puts "#{computer.name} won!"
-    else
-      puts "It's a tie!"
-    end
-  end
-
-  def display_score
-    puts "#{human.name}'s Score: #{human.score}"
-    puts "#{computer.name}'s Score: #{computer.score}"
   end
 
   def play_again?
@@ -137,6 +145,7 @@ class RPSGame
   def play
     display_welcome_message
     loop do
+      clear_screen
       human.choose
       computer.choose
       display_moves

@@ -125,6 +125,8 @@ class RPSGame
 
   attr_accessor :human, :computer
 
+  WINNING_SCORE = 5
+
   def initialize
     @human = Human.new
     @computer = Computer.new
@@ -142,15 +144,22 @@ class RPSGame
     answer == 'y' ? true : false
   end
 
+  def winner?
+    human.score == WINNING_SCORE || computer.score == WINNING_SCORE
+  end
+
   def play
     display_welcome_message
     loop do
-      clear_screen
-      human.choose
-      computer.choose
-      display_moves
-      display_winner
-      display_score
+      loop do
+        clear_screen
+        human.choose
+        computer.choose
+        display_moves
+        display_winner
+        display_score
+        break if winner?
+      end
       break unless play_again?
     end
     display_goodbye_message

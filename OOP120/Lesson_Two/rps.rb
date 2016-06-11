@@ -149,13 +149,27 @@ class History
     self.log[round] = [human, computer]
   end
 
-  def computer_losses
-    comp_losses = []
-    log.each do |_, move|
-      comp_losses << move[1] if move[0] > move[1]
-    end
-    puts comp_losses
-  end
+  # def computer_losses
+  #   comp_losses = []
+  #   log.each do |_, move|
+  #     comp_losses << move[1] if move[0] > move[1]
+  #   end
+  #   puts comp_losses
+  # end
+
+  # def analyze_losses
+  #   hand_losses = Hash.new(0)
+  #   dont_pick = []
+
+  #   computer_losses.each do |v|
+  #     hand_losses[v] += 1
+  #   end
+    
+  #   hand_losses.each_value do |v|
+  #     dont_pick << hand_losses.key(v) if (v.to_f / computer_losses.count) >= 0.5
+  #   end
+  #   dont_pick
+  # end
 end
 
 class Player 

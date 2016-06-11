@@ -85,22 +85,6 @@ module Winner
   def winner?
     human.score == WINNING_SCORE || computer.score == WINNING_SCORE
   end
-
-  def >(other_move)
-    (rock? && other_move.scissors? || rock? && other_move.lizard?) ||
-      (paper? && other_move.rock? || paper? && other_move.spock?) ||
-      (scissors? && other_move.paper? || scissors? && other_move.lizard?) ||
-      (lizard? && other_move.spock? || lizard? && other_move.paper?) ||
-      (spock? && other_move.scissors? || spock? && other_move.rock?)
-  end
-
-  def <(other_move)
-    (rock? && other_move.paper? || rock? && other_move.spock?) ||
-      (paper? && other_move.scissors? || paper? && other_move.lizard?) ||
-      (scissors? && other_move.rock? || scissors? && other_move.spock?) ||
-      (lizard? && other_move.rock? || lizard? && other_move.scissors?) ||
-      (spock? && other_move.lizard? || spock? && other_move.paper?)
-  end
 end
 
 class Move
@@ -135,10 +119,25 @@ class Move
   def to_s
     @value
   end
+
+  def >(other_move)
+    (rock? && other_move.scissors? || rock? && other_move.lizard?) ||
+      (paper? && other_move.rock? || paper? && other_move.spock?) ||
+      (scissors? && other_move.paper? || scissors? && other_move.lizard?) ||
+      (lizard? && other_move.spock? || lizard? && other_move.paper?) ||
+      (spock? && other_move.scissors? || spock? && other_move.rock?)
+  end
+
+  def <(other_move)
+    (rock? && other_move.paper? || rock? && other_move.spock?) ||
+      (paper? && other_move.scissors? || paper? && other_move.lizard?) ||
+      (scissors? && other_move.rock? || scissors? && other_move.spock?) ||
+      (lizard? && other_move.rock? || lizard? && other_move.scissors?) ||
+      (spock? && other_move.lizard? || spock? && other_move.paper?)
+  end
 end
 
 class History
-  include Winner
   attr_accessor :log
 
   def initialize
@@ -149,13 +148,23 @@ class History
     self.log[round] = [human, computer]
   end
 
-  # def computer_losses
-  #   comp_losses = []
-  #   log.each do |_, move|
-  #     comp_losses << move[1] if move[0] > move[1]
-  #   end
-  #   puts comp_losses
-  # end
+  def computer_losses
+    comp_losses = []
+    log.each do |_, move|
+      if move[0] == 'rock' && move[1] == 'scissors' || move[1] == 'lizard'
+        comp_losses.push(move[1])
+      elsif move[0] == 'paper' && move[1] == 'rock' || move[1] == 'spock'
+        comp_losses.push(move[1])
+      elsif move[0] == 'scissors' && move[1] == 'paper' || move[1] == 'lizard'
+        comp_losses.push(move[1])
+      elsif move[0] == 'lizard' && move[1] == 'spock' || move[1] == 'paper'
+        comp_losses.push(move[1])
+      elsif move[0] == 'spock' && move[1] == 'scissors' || move[1] == 'rock'
+        comp_losses.push(move[1])
+      end
+    end
+    puts comp_losses
+  end
 
   # def analyze_losses
   #   hand_losses = Hash.new(0)

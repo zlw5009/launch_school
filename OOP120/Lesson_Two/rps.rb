@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'pry'
 
 module Displayable
   def display_welcome_message
@@ -7,7 +6,7 @@ module Displayable
   end
 
   def display_goodbye_message
-    puts '-'.center(62,'-')
+    puts '-'.center(62, '-')
     puts "Goodbye, #{human.name}!".center(62, '-')
   end
 
@@ -47,8 +46,8 @@ module Displayable
     puts "-".center(62, '-')
     puts "Moves For Each Round".center(62, '-')
     history.log.each do |round, moves|
-      puts ("Round #{round}:" + "  " +
-      "#{human.name} played #{moves[0]} " + "  " +
+      puts ("Round #{round}:" + "  " \
+      "#{human.name} played #{moves[0]} " + "  " \
       "#{computer.name} played #{moves[1]}!").center(62, " ")
     end
   end
@@ -65,7 +64,7 @@ module Displayable
   def convert_move_name(move)
     if move == 'r'
       move = 'rock'
-    elsif move == 's' 
+    elsif move == 's'
       move = 'scissors'
     elsif move == 'p'
       move = 'paper'
@@ -88,8 +87,6 @@ module Winner
 end
 
 class Move
-  include Winner
-
   VALUES = %w(rock paper scissors lizard spock).freeze
 
   def initialize(value)
@@ -145,43 +142,43 @@ class History
   end
 
   def record_moves(round, human, computer)
-    self.log[round] = [human, computer]
+    log[round] = [human, computer]
   end
 
   def computer_losses
     comp_losses = []
     log.each do |_, move|
-      if move[0] == 'rock' && move[1] == 'scissors' || move[1] == 'lizard'
-        comp_losses.push(move[1])
-      elsif move[0] == 'paper' && move[1] == 'rock' || move[1] == 'spock'
-        comp_losses.push(move[1])
-      elsif move[0] == 'scissors' && move[1] == 'paper' || move[1] == 'lizard'
-        comp_losses.push(move[1])
-      elsif move[0] == 'lizard' && move[1] == 'spock' || move[1] == 'paper'
-        comp_losses.push(move[1])
-      elsif move[0] == 'spock' && move[1] == 'scissors' || move[1] == 'rock'
-        comp_losses.push(move[1])
-      end
+      comp_losses << move[1] if move[0] > move[1]
     end
-    puts comp_losses
+    comp_losses
   end
 
-  # def analyze_losses
-  #   hand_losses = Hash.new(0)
-  #   dont_pick = []
+  def how_many_losing_moves
+    hand_losses = Hash.new(0)
+    num_losses = []
 
-  #   computer_losses.each do |v|
-  #     hand_losses[v] += 1
-  #   end
-    
-  #   hand_losses.each_value do |v|
-  #     dont_pick << hand_losses.key(v) if (v.to_f / computer_losses.count) >= 0.5
-  #   end
-  #   dont_pick
-  # end
+    computer_losses.each do |v|
+      hand_losses[v] += 1
+    end
+    hand_losses.each_pair do |move, num_times|
+      num_losses << [move, num_times]
+    end
+    num_losses
+  end
+
+  def analyze_losses
+    dont_pick = []
+
+    how_many_losing_moves.map do |nest|
+      if (nest[1].to_f / computer_losses.count) >= 0.5
+        dont_pick << nest[0].to_s
+      end
+    end
+    dont_pick
+  end
 end
 
-class Player 
+class Player
   include Displayable
 
   attr_accessor :move, :name, :score
@@ -193,7 +190,7 @@ class Player
 
   def increment_score
     self.score += 1
-  end 
+  end
 end
 
 class Human < Player
@@ -211,7 +208,8 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      puts "Please choose rock(r), paper(p), scissors(s), lizard(l), or spock(sp):"
+      puts "Please choose rock(r), paper(p), scissors(s), " \
+      "lizard(l), or spock(sp):"
       choice = convert_move_name(gets.strip.chomp)
       break if Move::VALUES.include?(choice.downcase)
       puts "Sorry, that choice was invalid."
@@ -226,8 +224,12 @@ class Computer < Player
                  'Jules', 'Darcy', 'Kilmer'].sample
   end
 
-  def choose
+  def choose(losses)
     self.move = convert_move_name(Move.new(Move::VALUES.sample))
+
+    while losses.include?(move)
+      self.move = convert_move_name(Move.new(Move::VALUES.sample))
+    end
   end
 end
 
@@ -258,14 +260,17 @@ class RPSGame
     answer == 'y' ? true : false
   end
 
+  def choose_move
+    human.choose
+    computer.choose(history.analyze_losses)
+  end
+
   def match
     loop do
       increment_round
       clear_screen
-      human.choose
-      computer.choose
-      history.record_moves(round, "#{human.move}", "#{computer.move}")
-      #binding.pry
+      choose_move
+      history.record_moves(round, human.move, computer.move)
       display_moves
       display_round_winner
       display_score

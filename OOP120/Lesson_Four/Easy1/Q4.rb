@@ -1,0 +1,1 @@
+You call .new on the AngryCat class like so: AngryCat.new

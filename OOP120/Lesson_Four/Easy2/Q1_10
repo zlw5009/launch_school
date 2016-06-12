@@ -1,0 +1,74 @@
+Question 1
+
+The result will output "You will <something>" 
+<something> pertains to a random element of the array
+in the choices instance method. 
+
+Question 2
+
+The result will output "You will <something>"
+<something> pertains to a random element of the array 
+in the choices instance method of the RoadTrip class. 
+This is because the trip.predict_the_future call is 
+calling the predict_the_future method from the Oracle class.
+The predict_the_future method calls choices. The choices will be
+selected from the class the object belongs to, in this case, RoadTrip class. 
+
+Question 3
+
+To find a methods hierarchy, call ancestors on the object you want to call
+a method on. This will display where Ruby is going to look for a method in 
+the proceeding order. If a method isn't find in the first class, it will look
+at the next class until it finds that method. If a method is not found, Ruby will
+return an error. 
+
+Question 4
+
+attr_accessor
+
+Question 5
+
+excited_dog => local variable - no prefix
+@excited_dog => instance variable - @ prefix
+@@excited_dog => class variable - @@ prefix
+
+Questions 6
+
+manufacturer is a class method because it is prefixed with self
+You call a class method by calling it on the class name. 
+
+Question 7
+
+@@cats_count is a class variable. It is an object that stores how many
+objects of the class Cat have been created. It works by creating a new cat object
+and adding the type of cat it is as an argument like so; tiger = Cat.new("crazy")
+this will set the @@cats_count class variable = 1. Every proceding cat object 
+created will increase the @@cats_count by 1. 
+
+tiger = Cat.new('some_type')
+Cat.cats_count
+
+Question 8
+
+We would need to inherit Game for the Bingo class by the following syntax:
+class Bingo < Game. 
+
+we could then call bingo = Bingo.new.play
+
+Question 9
+
+When we called play on the Bingo object, Ruby would use the Bingo instance 
+method play because it would override the Game instance method play. 
+
+We can test this theory by looking at our hierarchy by calling ancestors
+on a bingo object. 
+
+Question 10
+
+We can override methods to perform specific operations.
+Code is easier to follow because we can create classes from 
+  the nouns in a problem and methods from the verbs
+Easy access to namespacing and keeping code DRY
+Reuse of code to build software with
+  We can create a method and use it later in another program
+Manage issues and errors easier; debugging is easier

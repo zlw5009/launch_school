@@ -1,0 +1,79 @@
+Keeping score
+
+Right now, the game doesn't have very much dramatic flair. It'll be more interesting if we were playing up to, say, 10 points. Whoever reaches 10 points first wins. Can you build this functionality? We have a new noun -- a score. Is that a new class, or a state of an existing class? You can explore both options and see which one works better.
+
+Everytime a player - human/computer - wins/loses, the score will be incremented by one +/-, respectively. The score should be displayed after each game. 
+
+Nouns: score
+Verbs: increment_score, display_score
+
+The score should be stored in the respective players score
+
+First, lets just count each game played. So were going to increment the score counter up to 5 then end the gameplay loop.
+
+
+User Interface features
+
+We want to create a module that holds the following messages to the user:
+- Greeting
+- Goodbye
+- Clear Screen
+
+
+Add Lizard and Spock
+
+lizard < rock && scissors 
+lizard > spock && paper
+spock > scissors && rock
+spock < lizard && paper
+
+
+Keep Track of Moves History
+
+As long as the user doesn't quit, keep track of a history of moves by both the human and computer.What data structure will you reach for? Will you use a new class, or an existing class? What will the display output look like?
+
+We will want a nested hash: key = Player (Human/Computer) value = (Nested Array [round, move])
+
+First, this is not a new class, we will utilize the move class. The move class already performs the moves so we are adding another VERB to the class - tracking move history.
+
+We have several methods - track move history, add move to player hash, display moves
+
+Questions:
+syntax of a hash for nesting arrays
+how to retrieve a nested array info
+how to assign an element of an array to a nested array in a hash
+
+
+Computer AI
+
+We want to define a class that analyzes the history of choices
+If the user wins > 50% of the time when the computer chooses a certain move
+Then decrease the probability that the computer will choose that move again. 
+
+What I want to do is calculate the % of times a user wins when the computer chooses a certain move
+If that percentage is > 50% for the given move, decrease the chance the computer selects that move
+
+How will I decrease the chance of selecting that move
+- I could calculate the %chance of selecting a move which is 20%
+- For every 10% over 50% of wins for the user
+  - decrease %chance by 3%
+
+Take the hands that the computer lost with and put them in an array
+iterate through that array and count how many losses the comp has with that hand
+  - divide the losses with that hand by the total amount of losses
+  - if that % is 50% or greater, decrease the probability of choosing that hand again by 3%
+
+
+iterate through computer_losses array. 
+for 
+
+
+RPSGame 
+- Player
+  - Human
+    - Move
+  - Computer
+    - Move
+      - Adjust Move based on Stats
+
+

@@ -20,17 +20,17 @@ module Displayable
     puts "#{computer.name} chose #{computer.move}."
   end
 
-  def display_round_winner
-    if human.move > computer.move
-      human.increment_score
-      puts "You won Round: #{round}!"
-    elsif human.move < computer.move
-      computer.increment_score
-      puts "#{computer.name} won Round: #{round}!"
-    else
-      puts "It's a tie!"
-    end
-  end
+  # def display_round_winner
+  #   if human.move > computer.move
+  #     human.increment_score
+  #     puts "You won Round: #{round}!"
+  #   elsif human.move < computer.move
+  #     computer.increment_score
+  #     puts "#{computer.name} won Round: #{round}!"
+  #   else
+  #     puts "It's a tie!"
+  #   end
+  # end
 
   def display_match_winner
     if human.score > computer.score
@@ -40,16 +40,16 @@ module Displayable
     end
   end
 
-  def display_results
-    system('clear') || system('cls')
-    display_score
-    puts "-".center(62, '-')
-    puts "Moves For Each Round".center(62, '-')
-    history.log.each do |round, moves|
-      puts ("Round #{round}:" + "  " \
-      "#{human.name} played #{moves[0]} " + "  " \
-      "#{computer.name} played #{moves[1]}!").center(62, " ")
-    end
+  # def display_results
+  #   system('clear') || system('cls')
+  #   display_score
+  #   puts "-".center(62, '-')
+  #   puts "Moves For Each Round".center(62, '-')
+  #   history.log.each do |round, moves|
+  #     puts ("Round #{round}:" + "  " \
+  #     "#{human.name} played #{moves[0]} " + "  " \
+  #     "#{computer.name} played #{moves[1]}!").center(62, " ")
+  #   end
   end
 
   def clear_screen
@@ -61,21 +61,21 @@ module Displayable
     gets
   end
 
-  def convert_move_name(move)
-    if move == 'r'
-      move = 'rock'
-    elsif move == 's'
-      move = 'scissors'
-    elsif move == 'p'
-      move = 'paper'
-    elsif move == 'l'
-      move = 'lizard'
-    elsif move == 'sp'
-      move = 'spock'
-    else
-      move
-    end
-  end
+  # def convert_move_name(move)
+  #   if move == 'r'
+  #     move = 'rock'
+  #   elsif move == 's'
+  #     move = 'scissors'
+  #   elsif move == 'p'
+  #     move = 'paper'
+  #   elsif move == 'l'
+  #     move = 'lizard'
+  #   elsif move == 'sp'
+  #     move = 'spock'
+  #   else
+  #     move
+  #   end
+  # end
 end
 
 module Winner
@@ -117,21 +117,21 @@ class Move
     @value
   end
 
-  def >(other_move)
-    (rock? && other_move.scissors? || rock? && other_move.lizard?) ||
-      (paper? && other_move.rock? || paper? && other_move.spock?) ||
-      (scissors? && other_move.paper? || scissors? && other_move.lizard?) ||
-      (lizard? && other_move.spock? || lizard? && other_move.paper?) ||
-      (spock? && other_move.scissors? || spock? && other_move.rock?)
-  end
+  # def >(other_move)
+  #   (rock? && other_move.scissors? || rock? && other_move.lizard?) ||
+  #     (paper? && other_move.rock? || paper? && other_move.spock?) ||
+  #     (scissors? && other_move.paper? || scissors? && other_move.lizard?) ||
+  #     (lizard? && other_move.spock? || lizard? && other_move.paper?) ||
+  #     (spock? && other_move.scissors? || spock? && other_move.rock?)
+  # end
 
-  def <(other_move)
-    (rock? && other_move.paper? || rock? && other_move.spock?) ||
-      (paper? && other_move.scissors? || paper? && other_move.lizard?) ||
-      (scissors? && other_move.rock? || scissors? && other_move.spock?) ||
-      (lizard? && other_move.rock? || lizard? && other_move.scissors?) ||
-      (spock? && other_move.lizard? || spock? && other_move.paper?)
-  end
+  # def <(other_move)
+  #   (rock? && other_move.paper? || rock? && other_move.spock?) ||
+  #     (paper? && other_move.scissors? || paper? && other_move.lizard?) ||
+  #     (scissors? && other_move.rock? || scissors? && other_move.spock?) ||
+  #     (lizard? && other_move.rock? || lizard? && other_move.scissors?) ||
+  #     (spock? && other_move.lizard? || spock? && other_move.paper?)
+  # end
 end
 
 class History
@@ -145,24 +145,24 @@ class History
     log[round] = [human, computer]
   end
 
-  def computer_losses
-    comp_losses = []
-    log.each do |_, move|
-      comp_losses << move[1] if move[0] > move[1]
-    end
-    comp_losses
-  end
+  # def computer_losses
+  #   comp_losses = []
+  #   log.each do |_, move|
+  #     comp_losses << move[1] if move[0] > move[1]
+  #   end
+  #   comp_losses
+  # end
 
-  def how_many_losing_moves
-    hand_losses = Hash.new(0)
-    num_losses = []
+  # def how_many_losing_moves
+  #   hand_losses = Hash.new(0)
+  #   num_losses = []
 
-    computer_losses.each do |v|
-      hand_losses[v] += 1
-    end
-    hand_losses.each_pair do |move, num_times|
-      num_losses << [move, num_times]
-    end
+  #   computer_losses.each do |v|
+  #     hand_losses[v] += 1
+  #   end
+  #   hand_losses.each_pair do |move, num_times|
+  #     num_losses << [move, num_times]
+  #   end
     num_losses
   end
 

@@ -10,9 +10,11 @@ module Joinable
 end
 
 module Displayable
-  def display_welcome_message
+  def greet_user_and_get_name
     puts "Welcome to Tic Tac Toe!"
-    puts ""
+    human.set_name
+    computer.set_name
+    clear
   end
 
   def display_goodbye_message
@@ -187,7 +189,7 @@ class Human < Player
 end
 
 class Computer < Player
-  COMPUTER_NAMES = ['Billy Bob', 'Mox', 'Tweeter', 'Jules']
+  COMPUTER_NAMES = ['Billy Bob', 'Mox', 'Tweeter', 'Jules'].freeze
 
   def set_name
     self.name = COMPUTER_NAMES.sample
@@ -214,17 +216,12 @@ class TTTGame
 
   def play
     clear
-    display_welcome_message
-    human.set_name
-    computer.set_name
-    clear
+    greet_user_and_get_name
 
     loop do
-
       loop do
         display_board
-        choose_marker
-        set_marker
+        marker_swap_option
         who_moves_first
 
         loop do
@@ -248,6 +245,11 @@ class TTTGame
   end
 
   private
+
+  def marker_swap_option
+    choose_marker
+    set_marker
+  end
 
   def choose_marker
     answer = nil
@@ -278,8 +280,11 @@ class TTTGame
       puts "Sorry, you must select y or n."
     end
 
-    who_moves.include?('y') ? self.current_marker = human.marker \
-    : self.current_marker = computer.marker
+    if who_moves.include?('y')
+      self.current_marker = human.marker
+    else
+      self.current_marker = computer.marker
+    end
   end
 
   def human_turn?
@@ -287,7 +292,8 @@ class TTTGame
   end
 
   def human_moves
-    puts "#{human.name}, choose a square (#{board.joinor(board.unmarked_keys)}): "
+    puts "#{human.name}, choose a square" \
+    " (#{board.joinor(board.unmarked_keys)}): "
     square = nil
     loop do
       square = gets.chomp.to_i
@@ -328,7 +334,7 @@ class TTTGame
   def calculate_score
     case board.winning_marker
     when human.marker
-      human.increment_score 
+      human.increment_score
     when computer.marker
       computer.increment_score
     end

@@ -103,8 +103,8 @@ class Board
   def computer_intelligence(player_marker)
     WINNING_LINES.each do |line|
       current_positions = line.map { |value| @squares[value].marker }
-      if current_positions.count(player_marker) == 2 \
-        && current_positions.include?(Square::INITIAL_MARKER)
+      if current_positions.count(player_marker) == 2 &&
+        current_positions.include?(Square::INITIAL_MARKER)
         return line[current_positions.index(Square::INITIAL_MARKER)]
       end
     end
@@ -137,12 +137,6 @@ class Board
     return false if markers.size != 3
     markers.min == markers.max
   end
-
-  # def two_identical_markers?(squares)
-  #   markers = squares.select(&:marked?).collect(&:marker)
-  #   return false if markers.size != 2
-  #   markers.min == markers.max
-  # end
 end
 
 class Square
@@ -264,11 +258,11 @@ class TTTGame
   end
 
   def set_marker
-    if human.marker == HUMAN_MARKER
-      computer.marker = COMPUTER_MARKER
-    else
-      computer.marker = HUMAN_MARKER
-    end
+    computer_marker = if human.marker == HUMAN_MARKER
+                        COMPUTER_MARKER
+                      else
+                        HUMAN_MARKER
+                      end
   end
 
   def who_moves_first
@@ -281,9 +275,9 @@ class TTTGame
     end
 
     if who_moves.include?('y')
-      self.current_marker = human.marker
+      human.marker
     else
-      self.current_marker = computer.marker
+      computer.marker
     end
   end
 

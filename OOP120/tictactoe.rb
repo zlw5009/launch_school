@@ -194,28 +194,28 @@ class TTTGame
   include Displayable
 
   WINNING_SCORE = 5
-  HUMAN_MARKER = "X"
-  COMPUTER_MARKER = "O"
-  FIRST_TO_MOVE = HUMAN_MARKER
+  X_MARKER = "X"
+  O_MARKER = "O"
+  FIRST_TO_MOVE = X_MARKER
 
   attr_writer :current_marker
   attr_reader :board, :human, :computer
 
   def initialize
     @board = Board.new
-    @human = Human.new(HUMAN_MARKER)
-    @computer = Computer.new(COMPUTER_MARKER)
+    @human = Human.new(X_MARKER)
+    @computer = Computer.new(O_MARKER)
     @current_marker = FIRST_TO_MOVE
   end
 
   def play
     clear
     greet_user_and_get_name
+    marker_swap_option
 
     loop do
       loop do
         display_board
-        marker_swap_option
         who_moves_first
 
         loop do
@@ -254,14 +254,14 @@ class TTTGame
       puts "You must choose 'X' or 'O'."
     end
 
-    answer == 'x' ? human.marker = HUMAN_MARKER : human.marker = COMPUTER_MARKER
+    answer == 'x' ? human.marker = X_MARKER : human.marker = O_MARKER
   end
 
   def set_marker
-    computer_marker = if human.marker == HUMAN_MARKER
-                        COMPUTER_MARKER
+    computer.marker = if human.marker == X_MARKER
+                        O_MARKER
                       else
-                        HUMAN_MARKER
+                        X_MARKER
                       end
   end
 
@@ -274,11 +274,11 @@ class TTTGame
       puts "Sorry, you must select y or n."
     end
 
-    if who_moves.include?('y')
-      human.marker
-    else
-      computer.marker
-    end
+    self.current_marker = if who_moves.include?('y')
+                            human.marker
+                          else
+                            computer.marker
+                          end
   end
 
   def human_turn?

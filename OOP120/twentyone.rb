@@ -33,7 +33,7 @@ module Actionable
                end
     end
 
-    hand.select(&:ace?).count.times do
+    hand.count(&:ace?).times do
       break if total <= BLACKJACK
       total -= 10
     end
@@ -43,6 +43,11 @@ module Actionable
 
   def clear
     system 'clear'
+  end
+
+  def joinor(array, delimiter=', ', word='or')
+    array[-1] = "#{word} #{array.last}" if array.size > 1
+    array.size == 2 ? array.join(' ') : array.join(delimiter)
   end
 end
 
@@ -75,17 +80,26 @@ class Player < Participant
 end
 
 class Dealer < Participant
-  NAMES = %w(Natalia Lily Kristina Kelsey Andrea).freeze
+  NAMES = %w(Natalia Lily Kristina)
 
   def show_flop
     puts "---#{name}'s Hand---"
-    hand.first.to_s
+    puts hand.first.to_s
     puts "---??---"
     puts ""
   end
 
   def set_name
-    self.name = NAMES.sample
+    puts ""
+    answer = nil
+    loop do
+      puts "Who would you like to be your dealer today: " \
+      "#{joinor(NAMES)}?"
+      answer = gets.chomp.capitalize
+      break if NAMES.include?(answer)
+      puts "Sorry, you must choose a dealer from the list."
+    end
+    self.name = answer
   end
 end
 
@@ -202,13 +216,13 @@ class Game
   end
 
   def dealer_turn
-    dealer.show_hand
     if dealer.total < 17 || !dealer.busted?
       dealer.collect_card(deck.deal_card)
     end
+        dealer.show_hand
   end
 
-  def determine_winner
+  def display_winner
     if ((player.total > dealer.total) && !player.busted?) || dealer.busted?
       puts "#{player.name} WINS!"
     elsif ((dealer.total > player.total) && !dealer.busted?) || player.busted?
@@ -232,7 +246,7 @@ class Game
       puts "#{dealer.name} Busted!"
     end
     display_scores
-    determine_winner
+    display_winner
   end
 
   def play_again?
@@ -260,6 +274,7 @@ class Game
       player_turn
 
       loop do
+        dealer.show_hand
         break if player.busted?
         dealer_turn
         break if dealer.total >= 17

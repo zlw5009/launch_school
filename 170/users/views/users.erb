@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>User's Homepage</title>
+  </head>
+
+  <body>
+    <div>
+      <h1>Select a User's Page to Visit</h1>
+
+      <ul>
+        <% @users.each_key do |name| %>
+        <li>
+          <a href="/<%= name %>"><%= name %></a>
+        </li>
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>User's Homepage</title>
+    <style type="text/css">
+      .other_users{
+        position: fixed;
+        text-align: left;
+        bottom: 25px;
+      }
+      </style>
+  </head>
+
+  <body>
+    <div>
+      <h1><%= @user_name.capitalize %>'s Homepage</h1>
+
+      <h4><%= @user_name.capitalize %>'s Email Address: <%= @email %></h4>
+      <h4><%= @user_name.capitalize %>'s Interests: </h4>
+        <ul>
+          <% @interests.each do |hobby| %>
+          <li>
+            <em><%= hobby %></em>
+          </li>
+          <% end %>
+        </ul>
+
+    </div>
+
+    <div class="other_users">
+      <ul>
+        <% @users.each_key do |name| %>
+          <% unless name == @user_name %>
+            <li><a href="/<%= name %>"><%= name %></a></li>
+          <% end %>
+        <% end %>
+
+      </ul>
+    </div>
+
+  </body>
+</html>

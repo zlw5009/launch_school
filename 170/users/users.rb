@@ -9,8 +9,9 @@ end
 
 helpers do
   def count_interests(users)
-    users.reduce(0) do |sum, (users, name)|
-      sum + name[:interests].size
+    users.reduce(0) do |sum, (name, user_info)|
+      require 'pry' ; binding.pry
+      sum + user_info[:interests].size
     end
   end
 end

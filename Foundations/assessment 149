@@ -1,0 +1,38 @@
+1. The output is `2` because the str variable is reassigned the `2` object. The loop then breaks and `2` becomes the output. Nil will then be returned by the `puts` method. 
+
+2. The code raises an exception because str is assigned within the loop (inner scope) then called outside the scope. 
+
+3. No. Because there is no indication that the str variable was assigned previously. It may have been assigned within a method, loop, etc. (inner scope) which prevents it from being used in the outter scope. 
+
+4. An exception is raised because the `a_method` method does not take an str argument as a perimeter nor was the str variable assigned within the scope of the method so it is not accessible. The code could be rewritten to accept a perimeter: `def a_method(str)` and called: `a_method(str)` which would allow the code to work properly. 
+
+5. `str` within the `a_method` method is not the same variable as `str` outside the `a_method` method. The code runs without an exception because the `str = "world"` variable and object, respectively, is an assignment of the `"world"` object to the `str` variable. `puts str` on line 8 is referring to the local variable on line 1 which outputs the object `"hello"`. `str` outside the `a_method` method is not pointing to the same object as the `str` within the `a_method` method. 
+
+6. `b` is still `"hello"` because on line 3, the `a` variable is being reassigned to a new object `"hi"`. On line 4, `" world"` is being appended to the new object by the shovel operator which only effects the `a` variable. 
+
+7. There are only 2 objects in this snippet of code; `"hello"` and `"world"` which about both string objects and there are 4 variables, `a`, `b`, `c`, and `d`. I derived this answer based off of the fact that variables are pointers, meaning the point to an object and store that object in some memory. `a` and `b` on lines 1 and 2, respectively, are assigning the `"hello"` and `"world"` objects to the respective variables.
+
+Mutating Method Arguments
+
+1. String concatination is occuring within the `change` method. On line 6, `"hello world"` will be returned from the `change(greeting)` argument, however, because the `change` method does not mutate the `greeting` parameter, the code on line 8, `puts greeting`, will return "hello" because the `greeting` variable was assigned the `hello` object on line 5 and was not mutated by the `change` method. 
+
+2. Line 8 prints "hello world" because within the `change` method, the argument passed by the parameter for the `change` method is being mutated by the shovel operator. `greeting` is assigned the `"hello" object on line 5; `change(greeting)` passes the `greeting` variable into the `change` method which is then mutated by the code on line 2, `param << " world"` by appending the `" world"` string object to the greeting variable, creating a new object, "hello world". 
+
+3. The reason `greeting` returns `"hello"` on line 8 is because the method is reassigning `param` to a new object, "hi". On line three, `" world"` is being appended to the new object "hi". Therefore, the method does no alter the original `"hello"` at all. 
+
+4. The `change` method reassigns `param` on line 2 by the `+=` operator which is equivalent to `param = param + "greeting"` therefore all the proceeding arguments on lines 3-5 do not alter the original `"hello"` object at all. A very similar case to question #3. 
+
+Working with Collections
+
+1. Array#map - passes each element of the array once into the block and returns a new array containing the values which are returned by the block. 
+2. Array#select - iterates through an array and passes each element into the block once; a new array is returned containing all the elements for which the block returns true. 
+
+3. The reason each option returns the same array is because the arguments within the block of are both using the `+` operator to add 1 to the element passed through. On line 1, the block is the `n` element and adding `1` to it and the return value is put into a new array. On line 3, the block is reassigning `n` by taking the value of `n` and adding `1` to it; the returned value is then added to a new array. The preferred option is to use the `+=` notation because it reassigns the value of n through addition whereas `n + 1` is just adding `1` to the `n`th element and putting it in a new array. 
+
+4. The reason why the resulting `arr` is an array of booleans is because the Array#map method returns a new array containing the values which are returned by the block. In this case, the block is evaluating `n > 2` to determine if n is greater than 2. If it is, `true` is returned and put into the new array. Whereas using the Array#select method returns a new array containing the elements which the block evaluates to true. So in this instance, if Array#select were utilized, every element the returns `true` within the block is put into a new array. 
+
+5. The new array is going to filled with `nil`, `[nil, nil, nil]`. This is because the Array#map method is going to `puts n` and the last value returned by the `puts` method is `nil`, therefore, `nil` is going to be put into the new array. 
+
+6. The new array which will be returned is going to be identical to the array that `select` was called on. This is because the `select` method is going to evaluate an argument for return value of `true` or `false`. Each element passed into the block that returns `true` is going to be put into the new array. `n + 2` will always return true in this instance. If the argument were to return `nil` or `false`, then it would not be put into the new array. 
+
+7. As explained in the last question, 'nil' returns a 'false' boolean value. Therefore, the new array would be empty because `puts` returns `nil` at the end of each argument passed through it. Because `nil` is the last return value of the `puts` method, no elements are put into the new array. 

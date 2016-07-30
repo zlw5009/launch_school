@@ -1,0 +1,287 @@
+1. Explain the relationship between classes and objects. Use code to illustrate your explanation.
+
+An object is an instance of a class. 
+`bob = Person.new`
+
+`bob` would be an instance (object) of the `Person` class. 
+
+2. Explain what class inheritance is. Use code to illustrate your explanation.
+
+To use our `Person` class described above, we could have a separate class for `Female` and `Male`. 
+`Female < Person` shows that the `Female` class is inheriting the behaviors of the `Person` class. The `Female` class is therefore a subclass of `Person` or stated in a different way, `Person` is the superclass, `Female` is the subclass. 
+
+3. How does Ruby handle the problem of multiple inheritance? Explain how this modifies the method lookup chain. Use code to illustrate your explanation.
+
+Ruby handles multiple inheritance through mixing in modules. This is because a subclass can only inherit from one superclass. If a class requires inheriting more behaviors from another class, it is best to use a module for multple inheritance. This can be done as shown below:
+
+``` 
+module Workable
+end
+
+module Clothable
+end
+
+class Person
+end
+
+class Female < Person
+include Workable
+end
+
+class Male < Person
+end
+
+```
+The `Female` class in inheriting the behaviors of the `Person` class as well as the behaviors of the module `Workable`. 
+
+The method lookup path for the `Female` class will be:
+```
+Female
+Workable
+Person
+Object
+Kernal
+BasicObject
+```
+If we were to include `Clothable` in the `Female` class, our code and lookup path would change.
+```
+....
+class Female < Person
+include Workable
+include Clothable
+end
+....
+```
+Our lookup path would be
+```
+Female
+Clothable
+Workable
+Person
+...
+```
+This is because Ruby looks at the last module first so `Clothable` would have presidence over `Workable` in terms of the look up path. 
+
+4. What's the difference between a class and a module?
+
+Modules cannot be used to create an object whereas classes can. A modules use is for namespacing and grouping common behaviors (methods) together. 
+
+5. What's the whole point of Object Oriented Programming? Pros and cons of OOP?
+
+The point of OOP is to model real world object and to keep the descriptions/definitions specific to those objects. Through OOP, we can isolate common behaviors and CRUD the state of objects. OOP provides encapsulation to a class or object. 
+
+Pros: changes can be isolated and prevented from affecting the entire codebase. 
+Encapsulation
+Collaboration among behaviors
+Structure and design
+Namespacing
+Scalability
+Collaboration among a team environment for parallel development
+Reusability
+
+Cons:
+Indirection
+Performance (CPUs)
+Depending on the program, can take a significant amount of time to develop compared to procedural programming
+
+6. What does the phrase "OO Design" mean?
+
+OO Design is referring to the structure of the program itself (ex. choosing to use inheritance instead modules or vice versa). Overall, it is the design of the program and how objects will interact with each other. OO Design takes years to master and there is no right way to do something but there is a wrong way.
+
+7. The last line is outputting `"bob"` because the `change_info` method is assigning `new_name` to the `name` local variable instead of the instance variable `@name`. To change this, you can either write the method one of two ways:
+``` def change_info(new_name)
+      @name = new_name
+    end
+
+    or
+
+    def change_info(new_name)
+      self.name = new_name      # this can be used because of the attr_accessor :name
+    end
+```
+
+8. 
+```  
+class Person
+  @@total_people
+
+  def initialize(name, weight, height)
+    @name = name
+    @weight = weight
+    @height = height
+    @@total_people += 1
+  end
+end
+
+bob = Person.new('bob', 185, 70)
+Person.total_people
+```
+
+9. 
+```
+attr_accessor :name, :weight, :height
+
+# or
+
+def get_name
+  @name
+end
+
+def set_name=(name)
+  @name = name
+end 
+
+def get_weight
+  @weight
+end
+
+def set_weight=(weight)
+  @weight = weight
+end
+
+def get_height
+  @height
+end
+
+def set_height=(height)
+  @height = height
+end 
+```
+
+10.
+```
+def change_info(name, weight, height)
+  self.name = name
+  self.weight = weight
+  self.height = height
+end
+```
+
+11. `self` is used to declare a class method and/or used on setter methods so Ruby can confirm that we're calling a setter method instead of initializing a local variable. 
+
+- When an instance method makes a call to `self`, it is returning the calling object. So in our case for #10, `self.name=` is the same as calling `bob.name=`. The object that is calling self will be returned. 
+
+- A class method is defined by prepending `self` on the method definition name (ex. `self.total_people`) would be a class method and could return our class variable `@@total_people`. When self is used within a class but outside of an instance method, it is referring to the class itself. 
+
+12. 
+
+```
+module Fulltimeable
+  def set_employment_type
+    self.employment_type = 'Full-Time'
+  end
+end
+
+class Employee
+  attr_accessor :name, :serial_number, :employment_type, :vacation_time, :desk_type
+
+  def initialize(name, serial_number)
+    @name = name
+    @serial_number = serial_number
+    @employment_type = set_employment_type
+    @vacation_time = set_vacation_time
+    @desk_type = set_desk_type
+  end
+end
+
+class Manager < Employee
+  include Fulltimeable
+  MANAGER_VACATION = 14
+
+  def name
+    "Mgr " + @name
+  end
+
+  def set_vacation_time
+    self.vacation_time = MANAGER_VACATION
+  end
+
+  def set_desk_type
+    "Regular Private Office"
+  end
+end
+
+class Executive < Employee
+  include Fulltimeable
+  EXECUTIVE_VACATION = 20
+
+  def name
+    "Exe " + @name
+  end
+
+  def set_vacation_time
+    self.vacation_time = EXECUTIVE_VACATION
+  end
+
+  def set_desk_type
+    "Corner Office"
+  end
+end
+
+class Regular < Employee
+  include Fulltimeable
+  REGULAR_VACATION = 10
+
+  def set_vacation_time
+    self.vacation_time = REGULAR_VACATION
+  end
+
+  def set_desk_type
+    "Assigned Cubical"
+  end
+end
+
+class PartTime < Employee
+  PART_TIME_VACATION = 0
+
+  def set_vacation_time
+    self.vacation_time = PART_TIME_VACATION
+  end
+
+  def set_desk_type
+    "Open Workspace; Not Reserved"
+  end
+
+  def set_employment_type
+    self.employment_type = 'Part-Time'
+  end
+end
+```
+With writing the code like this, when an employee is entered, they'll be entered in terms of their position. Managers, Executives, and Regular employees are all full-time employees therefore their employment type is by default set to full-time. 
+
+Blocks
+
+1. Explain what a closure is, and why do we say that it's at the core of understanding local variable scope?
+
+A closure is a "chunk of code" that a programmer can save and use at a later time. A closure is implemented through a Proc object and can be used as a `block`, `lambda`, or instantiating an object from the `Proc` class. 
+
+Blocks create a new scope for local variable and only outer local variables are accessible to inner blocks. You can have multiple inner scopes created by blocks but only the local variables outside the inner scope are accessible.
+
+If we're using a block for a method, the block tracks the state of the surrounding context and takes it whereever the block is passed to, therefore it is binding. So the block of code will bind the surrounding elements and take them with it for further use in the future so it has an updated use of the code to be executed correctly. 
+
+2. Explain the 2 major use cases for implementing a method that can take a block. Use code to illustrate your explanation.
+
+2 major use cases for a method that can take a block are for sandwich code and/or defering some implementation decision to the method invocation time which allows the caller of the method to refine the use of the method at the time of invocation. 
+
+```
+File.open("my_ruby_file.txt", "w+") do |file|
+  # write something to this file
+end # => will automatically close the file 
+
+def some_method(some_variable)
+  yield(some_variable)
+end
+
+some_method(9) {|x| x * 5}
+# => Will return the product of 9 * 5 ..... 45
+```
+
+Testing
+
+1. What's the difference between MiniTest and RSpec?
+MiniTest is just Ruby code; RSpec is a Domain Specific Language (DSL). MiniTest can do everything that RSpec can do, RSpec just has a more english like syntax at the cost of simplicity.
+
+2. Explain what assert_equal does. How does it test for equality?
+
+`assert_equal` tests for equality by invoking the `==` method on the object. It will test to see if the value of the two objects compared are equal. It will not test if the two objects are equal (are the same object). This is performed by `assert_same`. 
+

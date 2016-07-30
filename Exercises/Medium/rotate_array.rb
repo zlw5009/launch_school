@@ -8,6 +8,12 @@ def rotate_rightmost_digits(number, x)
   rotation.join.to_i
 end
 
+def max_rotation(array)
+  array.size.times do |n|
+    rotate_rightmost_digits(array, n)
+  end
+end
+
 p rotate_rightmost_digits(735291, 3) == 735912
 
 

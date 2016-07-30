@@ -1,0 +1,22 @@
+<% session[:payments].each do |payment| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Card Number</th>
+        <th>Expiration Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= payment["first name"] + " " + payment["last name"] %></td>
+        <td><%= @date_time %></td>
+        <td><%= "#{payment["card number"][0..3]}-****-****-****" %></td>
+        <td><%= payment["expiration date"] %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<p><%= session.delete(:message) %></p>

@@ -1,0 +1,90 @@
+Questions
+
+1. What is HTTP?
+
+- Hypertext Transfer Protocol -> A protocol that connects clients to servers to transfer hypertext documents via the request/response cycle. 
+
+2. Identify the components of the following URL: https://amazon.com/products/GP1956028?q=10nafy0s&s=14
+
+https -> URL scheme
+amazon.com -> host
+/products/GP1956028 -> path
+? -> start of query string
+q=10nafy0s -> parameters name = q : value = 10nafy0s
+& -> query string separator
+s=14 -> parameters name = s : value = 14
+
+3. What are the components of an HTTP request?
+
+- Required components -> Name Path (ex. /home) and Method (ex. GET/POST)
+- Optional components -> Parameters, Headers, & Body
+
+4. What are the components of an HTTP response?
+
+- Required components -> Status Code (ex. 200/404)
+- Optional components -> Headers & Body
+
+5. Give an example of a header that might be a part of an HTTP response.
+
+- Content-Type: text/html;charset=utf-8
+- Cookies
+
+6. How can you determine if a request was successful?
+
+- Status Code 200 OK
+
+7. It is said that HTTP is a “stateless” protocol. Explain what this means.
+
+- It is basically saying that the server does not track data between each request/reponse cycle. Every request that a client sends to the server is new which doesn't allow requests to know of previous requests, etc. 
+
+8. A user is performing a product search on a book store website, greatbooks.com. This store sells both new and used books. The user is specifically looking for used books written by Andy Weir, and they are viewing the third page of search results. Compose a URL that contains this information.
+
+- https://www.greatbooks.com/used%20books?andy%20weird=3
+- https -> URL Scheme
+- greatbooks.com -> host
+- /user%20books -> path
+- ? -> query separator 
+- andy%20weird=3 -> parameter name = Andy Weird : value = page 3
+
+9. What determines whether a request should be made using GET or POST?
+
+- GET requests are used to receive data from the server -> "read only"
+- POST requests are used to send data to the server to verify data or make a change to some data -> "CRUD" data
+
+In other words, if you're just accessing data such as a webpage, you're going to use a GET request; if you're signing up for an app for the first time or logging in, you're using a POST request because you're sending data to the server which has to be verified. 
+
+10. How can you execute some code in a Sinatra application before any code in a route is executed?
+
+`before do ... end`
+
+11. Write a Sinatra route that will match all of the following URLs:
+- Assuming we're using a GET method to access the comments via using params
+  ```get '/stories/:stories_id/comments/:id' do
+        ...some code...
+     end```
+
+12. How can data entered by a user be a security risk? What can be done to safely display user-entered data in a web page?
+
+- There are several types of security risks by user enter data; XSS (Cross-Site Scripting) is where a user inputs HTML and/or JS that will end up being displayed on the website. To prevent this you can either sanitize user input to rid of user input that coulde be a threat or get rid of allowing it all together by using an alternative format such as Markdown like that which is used on LS. Another countermeasure that can be taken is to escape user input so the browser does not interpret it. 
+
+13. What is a templating language, and what are the benefits of using one?
+
+- A templating language is a language that contains text and is used to add dynamic content that is converted to html code before the server sends the view to the clients browser in a response. Benefits of using a templating language are the capabilies of adding dynamic content such as a users name (to personalize the view). ERB (embedded ruby) is a templating language that is added to applications in Sinatra by calling `require tilt/erubis` at the beginning of the application.
+
+14. How is data made accessible to view templates in a Sinatra application?
+
+- Data is made accessible through erb with the use of parameters, sessions, and DB's. 
+
+15. What is the problem with the following code?
+
+```get "/receipts/:id" do
+  @receipt = Receipt.find(params[:id])
+  erb :receipt_detail
+  puts "rendering the detail page"
+end```
+
+erb is rendering the `/view/receipt_detail.erb` file to display the view to the client via the response from the GET request. `puts "rendering the detail page"` will not be displayed in that view for a few reasons. One, puts is not interpreted by the clients browser so therefore, the string `"rendering the detail page"` will never be displayed. Second, if the user wants the page to show the string, it needs to be called before the `erb :receipt_detail` call or included in the `receipt_detail.erb` template. 
+
+If the code was written ```get "/receipts/:id" do
+"rendering the detail page"
+end``` the client would interpret the response and display the string.  

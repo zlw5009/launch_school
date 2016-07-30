@@ -1,0 +1,38 @@
+<% unless empty_fields? %> 
+  <% @empty_fields.each_key do |field| %>
+    <p><%= "#{field.capitalize} is not filled in." %></p>
+  <% end %>
+<% end %>
+
+<%if session[:message] %>
+  <p><%= session.delete(:message) %></p>
+<% end %>
+
+<form action="/payments/create" method="post">
+  <p>
+    <label>First name:
+      <input name="first" type="text" value="<%= params[:first] %>" />
+    </label>
+  </p>
+  <p>
+    <label>Last name:
+      <input name="last" type="text" value="<%= params[:last] %>" />
+    </label>
+  </p>
+  <p>
+    <label>Card number:
+      <input name="card_number" type="text" value="<%= params[:card_number] %>" />
+    </label>
+  </p>
+  <p>
+    <label>Expiration Date:
+      <input name="exp_date" type="text" value="<%= params[:exp_date] %>" />
+    </label>
+  </p>
+  <p>
+    <label>CCV:
+      <input name="cvv" type="text" value="<%= params[:cvv] %>" />
+    </label>
+  </p>
+    <button type="submit">Submit</button>
+</form>

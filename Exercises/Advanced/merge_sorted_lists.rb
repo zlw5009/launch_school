@@ -12,11 +12,6 @@
 # merge([], [1, 4, 5]) == [1, 4, 5]
 # merge([1, 4, 5], []) == [1, 4, 5]
 
-# We need a comparison to see if one element is greater than or less than the other element
-# to determine the position of the element
-
-require 'pry'
-
 def merge(ary1, ary2)
   merge = ary1 + ary2
   result = []

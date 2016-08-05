@@ -5,8 +5,8 @@ require 'io/console'
 
 class ExpenseData
   def initialize
-    setup_schema
     @connection = PG.connect(dbname: "expenses")
+    setup_schema
   end
 
   def add_expense(amount, memo)

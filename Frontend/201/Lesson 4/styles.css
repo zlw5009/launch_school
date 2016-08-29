@@ -1,0 +1,115 @@
+@import "whitespace_reset.css";
+
+main {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+form {
+  max-width: 37.5rem;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  padding-bottom: .62rem;
+  font-weight: bold;
+  color: #666666;
+}
+
+fieldset {
+  box-sizing: border-box;
+  background: #ececec;
+  margin-bottom: 2px;
+  border: 0;
+  border-left: 4px solid #cdcccb;
+  padding: 24px 32px;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  height: 2.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  font: normal .875rem Helvetica, Arial, sans-serif;
+  padding: 5px 8px;
+  border: 1px solid #0066cc;
+  border-radius: 4px;
+}
+
+textarea {
+  height: auto;
+}
+
+#first_name, #last_name {
+  width: 49%;
+}
+
+#first_name {
+  margin-right: 2%;
+}
+
+dl.partial {
+  display: inline-block;
+  padding: 0 .3rem;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+dl.third {
+  width: 33%;
+}
+
+dl.account {
+  width: 50%;
+}
+
+dl.first {
+  padding-left: 0;
+}
+
+dl.last {
+  padding-right: 0;
+}
+
+label.agreement {
+  position: relative;
+  font-size: .875rem;
+  font-weight: normal;
+  padding-left: 25px;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  top: -12px;
+  left: 0;
+}
+
+button {
+  height: 45px;
+  width: 175px;
+  border-radius: 4px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  font: normal 1rem Helvetica, Arial, sans-serif;
+  padding: .875rem 2rem;
+}
+
+button:hover, button:focus {
+  background-color: #6095cb;
+}
+
+

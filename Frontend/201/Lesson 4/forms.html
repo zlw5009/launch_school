@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+
+      <form action="" method="post">
+        <h1>Create Your Profile</h1>
+
+        <fieldset class="personal">
+          <dl>
+            <h2>Personal Info</h2>
+            <dt>
+              <label for="first_name">Your Name</label>
+            </dt>
+            <dd class="name">
+              <input type="text" name="first_name" id="first_name" placeholder="First" /><!--
+              --><input type="text" name="last_name" id="last_name" placeholder="Last" />
+            </dd>
+            <dt>
+              <label for="email">Email</label>
+            </dt>
+            <dd>
+              <input type="email" name="email" id="email" />
+            </dd>
+          </dl>
+        </fieldset>
+
+        <fieldset class="social">
+          <dl>
+            <h2>Social Media Accounts</h2>
+            <dl class="partial third first"
+              <dt>
+                <label for="facebook">Facebook</label>
+              </dt>
+              <dd>
+              <input type="text" name="facebook" id="facebook" />
+              </dd>
+            </dl><!-- 
+            --><dl class="partial third">
+              <dt>
+                <label for="twitter">Twitter</label>
+              </dt>
+              <dd>
+                <input type="text" name="twitter" id="twitter" />
+              </dd>
+            </dl><!--
+            --><dl class="partial third last">
+              <dt>
+                <label for="linkedin">Linkedin</label>
+              </dt>
+              <dd>
+                <input type="text" name="linkedin" id="linkedin" />
+              </dd>
+            </dl><!--
+          --></dl>
+        </fieldset>
+
+        <fieldset class="account">
+          <dl>
+            <h2>Account Info</h2>
+            <dl>
+              <dt>
+                <label for="profile_name">Profile Name</label>
+              </dt>
+              <dd>
+                <input type="text" name="profile_name" id="profile_name" />
+              </dd>
+            </dl>
+            <dl class="partial account first"
+              <dt>
+                <label for="password">Password</label>
+              </dt>
+              <dd>
+                <input type="password" name="password" id="password" />
+              </dd>
+            </dl><!--
+            --><dl class="partial account last">
+              <dt>
+                <label for="confirm_password">Confirm Password</label>
+              </dt>
+              <dd>
+                <input type="password" name="confirm_password" id="confirm_password" />
+              </dd>
+            </dl>
+          </dl>
+        </fieldset>
+
+        <fieldset class="bio">
+          <dl>
+            <h2>Bio</h2>
+            <textarea name="bio" id="bio" rows="6" cols="80"></textarea>
+          </dl>
+        </fieldset>
+
+        <fieldset class="complete">
+          <dl> 
+            <label class="agreement"><input type="checkbox" name="agreement" />I agree to treat other users with respect and will not say anything at all if I have nothing nice to say.</label>
+            <button type="submit" name="register">Create Account</button>
+          </dl>
+        </fieldset>
+
+      </form>
+    </main>
+  </body>
+</html>

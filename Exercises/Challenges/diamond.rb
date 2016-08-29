@@ -47,6 +47,8 @@ module Bookkeeping
   VERSION = 1
 end
 
+puts Diamond.make_diamond("K")
+
 # Top down approach
 
 # total spaces = array.size + (array.size-1) => 7 

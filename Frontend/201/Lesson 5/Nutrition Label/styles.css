@@ -1,0 +1,55 @@
+@import "whitespace_reset.css";
+
+body {
+  font: normal 16px Arial, sans-serif;
+  border: 2px solid #000;
+  margin: 0 auto;
+  width: 600px;
+  padding: 10px;
+}
+
+header {
+  border-bottom: 20px solid #000;
+}
+
+header h1 {
+  font-size: 48px;
+  font-weight: 900;
+}
+
+p {
+  font-size: 24px;
+}
+
+h2 {
+  padding: 7px 0;
+}
+
+section {
+  font-size: 24px;
+}
+
+strong {
+  font-weight: 900;
+}
+
+em {
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+}
+
+thead {
+  padding: 10px;
+  border-bottom: 10px solid #000;
+}
+
+th {
+  text-align: left;
+}
+
+td:nth-of-type(even) {
+  float: right;
+}

@@ -1,0 +1,79 @@
+@import "whitespace_reset.css";
+
+body {
+  background: linear-gradient(to bottom right, #1E1E1E, #121212, #090903, #050404, #000) no-repeat;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  padding: 80px 0;
+}
+
+.col_1, .col_2, .col_3 {
+  float: left;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+
+.col_2 {
+  width: 40%;
+}
+
+.col_1, .col_3 {
+  width: 30%;
+}
+
+.col_1 {
+  margin: 0 auto;
+  text-align: center;
+  padding: 90px 5px 110px 0;
+}
+
+.col_3 {
+  text-align: center;
+  padding: 110px 0 110px 10px;
+}
+
+.col_1 li, .col_3 li {
+  padding: 16px 0;
+}
+
+div.center_piece {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.center_piece img {
+  width: 480px;
+  height: auto;
+}
+
+div.center_piece h1 {
+  padding: 200px 75px 20px 75px;
+  margin: 0 auto;
+  font-size: 36px;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+
+div.center_piece p {
+  padding-bottom: 200px;
+  font-size: 18px;
+}
+
+li.linkedin {
+  -webkit-transform: rotate(15deg);
+  -moz-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+}
+
+li.github {
+  background: #fff;
+  -webkit-transform: rotate(15deg);
+  -moz-transform: rotate(16deg);
+  -o-transform: rotate(16deg);
+}

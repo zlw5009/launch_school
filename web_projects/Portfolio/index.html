@@ -7,36 +7,68 @@
   </head>
   <body>
     <header>
-      <div class="social col_1">
-        <nav class="social">
+      <nav class="nav row">
+        <div class="nav-col-1">
           <ul>
-            <li class="linkedin"><a href="">LinkedIn</a></li>
-            <li class="github"><a href="">Github</a></li>
-            <li class="blog"><a href="">Blog</a></li>
-            <li class="email"><a href="">Email</a></li>
+            <li class="logo">
+              <a href="#"></a>
+            </li>
           </ul>
-        </nav>
-      </div>
+        </div>
 
-      <div class="center_piece col_2">
-        <img src="images/centerpiece.png" />
-      </div>
-
-      <div class="social col_3">
-        <nav class="social">
+        <div class="nav-col-2">
           <ul>
-            <li class="about"><a href="">About</a></li>
-            <li class="projects"><a href="">Projects</a></li>
-            <li class="luckless"><a href="">Luckless Theory</a></li>
-            <li class="hire"><a href="">Hire Me</a></li>
+            <li class="directory" id="projects">
+              <a href="">Projects</a>
+            </li><!--
+            --><li class="directory" id="luckless">
+              <a href="">Live Luckless</a>
+            </li><!--
+            --><li class="directory" id="about">
+              <a href="">About</a>
+            </li><!--
+            --><li class="directory" id="contact">
+              <label for="toggle_nav" class="contact">Contact</label>
+              <input type="checkbox" name="toggle_nav" id="toggle_nav" />
+              <form class="contact_form" action="#" method="post">
+                <fieldset>
+                  <dl>
+                    <dt>Your Name</dt>
+                    <dd><input type="text" /></dd>
+                    <dt>Your email</dt>
+                    <dd><input type="text" /></dd>
+                    <dt>Message</dt>
+                    <dd><textarea rows="8" cols="120"></textarea></dd>
+                  </dl>
+                </fieldset>
+              </form>
+            </li>
           </ul>
-        </nav>
-      </div>
+        </div>
+
+        <div class="nav-col-3">
+          <ul>
+            <li class="social" id="github">
+              <a href="">Github</a>
+            </li><!--
+            --><li class="social" id="linkedin">
+              <a href="">LinkedIn</a>
+            </li><!--
+            --><li class="social" id="blog">
+              <a href="">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main>
+      <section class="hero">
+        <img src="images/logoblue.png" />
+        <h1>Zach<br>Williams</h1>
+        <p>Software Developer</p>
+      </section>
     </main>
     <footer>
-      
     </footer>
   </body>
 </html>

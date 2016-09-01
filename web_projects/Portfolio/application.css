@@ -1,79 +1,105 @@
 @import "whitespace_reset.css";
 
 body {
-  background: linear-gradient(to bottom right, #1E1E1E, #121212, #090903, #050404, #000) no-repeat;
   color: #fff;
   font-family: 'Lato', sans-serif;
+  background: #000;
 }
 
 header {
-  padding: 80px 0;
+  min-width: 668px;
+  width: 100%;
+  height: 56px;
+  font-weight: lighter;
 }
 
-.col_1, .col_2, .col_3 {
+nav {
+  width: 100%;
+}
+
+.nav-col-1,
+.nav-col-2,
+.nav-col-3 {
   float: left;
   overflow: hidden;
   box-sizing: border-box;
-  font-size: 18px;
 }
 
-
-.col_2 {
-  width: 40%;
+.nav-col-1 {
+  width: 25%;
 }
 
-.col_1, .col_3 {
-  width: 30%;
+.nav-col-1 ul {
+  text-align: left;
 }
 
-.col_1 {
-  margin: 0 auto;
+.nav-col-2 {
+  width: 50%;
+}
+
+.nav-col-2 ul {
   text-align: center;
-  padding: 90px 5px 110px 0;
 }
 
-.col_3 {
-  text-align: center;
-  padding: 110px 0 110px 10px;
+.nav-col-3 {
+  width: 25%;
 }
 
-.col_1 li, .col_3 li {
-  padding: 16px 0;
+.nav-col-3 ul {
+  text-align: right;
 }
 
-div.center_piece {
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
+nav > div li {
+  display: inline-block;
+  text-align: right;
+  padding: 20px;
 }
 
-.center_piece img {
-  width: 480px;
+nav > div li label {
+  color: #4CCEEF;
+}
+
+section.hero {
+  width: 100%;
+  text-align: right;
+}
+
+h1 {
+  margin: 110px 250px 0 0;
+  font-size: 8.5em;
+  font-weight: bolder;
+  letter-spacing: -1px;
+  line-height: .9em;
+  text-shadow: #4CCEEF -2.5px 0 10px;
+}
+
+p {
+  margin-right: 250px;
+  font-size: 2.5em;
+  letter-spacing: 1.5px;
+  color: #4CCEEF;
+}
+
+.hero img {
+  float: left;
+  padding-left: 50px;
+}
+
+form {
+  display: none;
+  position: relative;
+  left: -10000%;
+  height: 0;
+  padding: 25px 0 0 0;
+  transition: left 200ms linear;
+}
+
+#toggle_nav {
+  display: none;
+}
+
+#toggle_nav:checked + form {
+  width: 600px;
   height: auto;
-}
-
-div.center_piece h1 {
-  padding: 200px 75px 20px 75px;
-  margin: 0 auto;
-  font-size: 36px;
-  font-weight: lighter;
-  text-transform: uppercase;
-}
-
-div.center_piece p {
-  padding-bottom: 200px;
-  font-size: 18px;
-}
-
-li.linkedin {
-  -webkit-transform: rotate(15deg);
-  -moz-transform: rotate(20deg);
-  -o-transform: rotate(20deg);
-}
-
-li.github {
-  background: #fff;
-  -webkit-transform: rotate(15deg);
-  -moz-transform: rotate(16deg);
-  -o-transform: rotate(16deg);
+  left: 200px;
 }

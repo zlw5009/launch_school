@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="application.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <input type="checkbox" id="toggle_nav" />
+      <label id="toggle" for="toggle_nav"></label>
+
+      <nav>
+        <div class="all_todos">
+          <h2><a class="section all_todos" href="">All Todos<span class="active">18</span></a></h2>
+          <ul>
+            <li class="active"><a href="">02/16</a><span>8</span></li>
+            <li><a href="">03/16</a><span>2</span></li>
+            <li><a href="">04/16</a><span>1</span></li>
+            <li><a href="">05/16</a><span>1</span></li>
+            <li><a href="">06/16</a><span>6</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2><a class="section completed" href="">Completed</a></h2>
+          <ul>
+            <li class="checked"><a href="">02/15</a></li>
+            <li class="checked"><a href="">03/15</a></li>
+            <li class="checked"><a href="">04/15</a></li>
+            <li class="checked"><a href="">05/15</a></li>
+            <li class="checked"><a href="">06/14</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h2>02/16<span class="active">8</span></h2>
+
+      <h3><a class="todos" href="">Add new to do</a></h3>
+        <dl class="todo_list">
+          <dt>
+            <label class="unmarked todos delete" for="todo1">Item 1</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo1" />
+            <div class="form">
+              <form id="edit" action="#" method="post">
+                <fieldset>
+                  <dl>
+                    <dt class="title quarter no">
+                      <label for="title">Title</label>
+                    </dt>
+                    <dd class="title three-quarters no">
+                      <input type="text" id="title" value="Item 2" />
+                    </dd>
+                  </dl><!--
+                  --><dl>
+                    <dt class="date quarter no"><label for="day">Due Date</label></dt>
+                    <dd class="date three-quarters no">
+                      <select id="day">
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                      </select> /
+                      <select id="month">
+                        <option disabled selected>Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                      </select> /
+                      <select id="year">
+                        <option disabled selected>Year</option>
+                      </select>
+                    </dd>
+                  </dl><!--
+                  --><dl>
+                    <dt class="description quarter no">
+                      <label for="description">Description</label>
+                    </dt>
+                    <dd class="description three-quarters no">
+                      <textarea id="description" rows="6" cols="80">Description</textarea>
+                    </dd>
+                  </dl>
+                  <button type="submit" id="save">Save</button>
+                  <button type="submit" id="complete">Mark As Complete</button>
+                </fieldset>
+              </form>
+            </div>
+          </dd>
+          <dt>
+            <label class="unmarked todos delete" for="todo2">Item 2</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo2" />
+          </dd>
+          <dt>
+            <label class="checked todos delete" for="todo3">Item 3</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo3" />
+          </dd>
+          <dt>
+            <label class="checked todos delete" for="todo4">Item 4</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo4" />
+          </dd>
+          <dt>
+            <label class="checked todos delete" for="todo5">Item 5</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo5" />
+          </dd>
+          <dt>
+            <label class="unmarked todos delete" for="todo6">Item 6</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo6" />
+          </dd>
+          <dt>
+            <label class="unmarked todos delete" for="todo7">Item 7</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo7" />
+          </dd>
+          <dt>
+            <label class="unmarked todos delete" for="todo8">Item 8</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo8" />
+          </dd>
+          <dt>
+            <label class="unmarked todos delete" for="todo9">Item 9</label>
+          </dt>
+          <dd>
+            <input type="checkbox" id="todo9" />
+          </dd>
+        </dl>
+    </main>
+  </body>
+</html>

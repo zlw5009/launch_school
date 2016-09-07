@@ -1,0 +1,342 @@
+@import "whitespace_reset.css";
+
+body {
+  font: normal 16px "Helvetica Regular", Arial, sans-serif;
+  letter-spacing: .04em;
+  height: 100%;
+}
+
+nav {
+  float: left;
+  padding-top: -500px;
+  min-width: 335px;
+  height: 100%;
+  background: #464f77;
+  color: #b2b5c3;
+}
+
+div.all_todos {
+  margin-top: 76px;
+}
+
+nav h2 {
+  padding-left: 102px;
+  margin-bottom: 11px;
+  font-size: 18px;
+}
+
+nav div {
+  margin-bottom: 54px;
+}
+
+nav h2 a {
+  color: #ffffff;
+}
+
+nav a {
+  color: #b2b5c3;
+}
+
+nav a.section::before {
+  display: inline-block;
+  width: 26px;
+  height: 18px;
+  margin: 0 11px 0 0;
+  content: "";
+  vertical-align: middle;
+  background: transparent url("images/icons_nav.png") 0 0 no-repeat;
+}
+
+nav a.all_todos::before {
+  height: 26px;
+  background-position: 0 -18px;
+}
+
+nav a.completed::before {
+  height: 26px;
+  background-position: 0 100%;
+}
+
+span {
+  float: right;
+  margin-right: 32px;
+  padding: 3px 6px;
+  background-color: #6b7292;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #ccced8;
+}
+
+li.active span {
+  float: left;
+}
+nav li span {
+  margin-top: -3px;
+}
+
+nav li {
+  padding: 14px 0 14px 138px;
+  overflow: hidden;
+}
+
+nav .all_todos li:last-of-type {
+  background: red;
+}
+
+nav li.active, nav li.active a {
+  background: #383f5f;
+  color: #ffffff;
+}
+
+nav li.active a {
+  float: right;
+  margin-right: 32px;
+}
+
+span.active {
+  color: #ffffff;
+  background: #148fd5;
+}
+
+main {
+  color: #060606;
+  padding: 0 100px 23px 20px;
+  height: 100%;
+  overflow: hidden;
+}
+
+main a {
+  color: inherit;
+}
+
+main h2 {
+  font-size: 21px;
+  margin: 76px 0 45px 0;
+}
+
+main span {
+  float: none;
+  vertical-align: middle;
+  display: inline-block;
+  margin: -5px 0 0 20px;
+}
+
+main h3 {
+  color: #148fd5;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+main h2,
+main h3,
+main .todo_list label,
+main .todo_list input {
+  padding-left: 12px;
+}
+
+main dt, main dd {
+  display: inline-block;
+  width: 100%
+}
+
+main dt {
+  padding: 15px 0;
+  border-top: 1px solid #e7e7e7;
+}
+
+main .todo_list dd {
+  float: left;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: #c6c6c6;
+}
+
+main .todos::before {
+  display: inline-block;
+  content: "";
+  width: 13px;
+  padding-right: 14px;
+  height: 13px;
+  background: transparent url("images/icons_todos.png") 0 0 no-repeat;
+}
+
+main .unmarked::before {
+  height: 14px;
+  width: 14px;
+  vertical-align: middle;
+  background-position: 0 -13px;
+}
+
+main .checked::before {
+  height: 14px;
+  width: 14px;
+  vertical-align: middle;
+  background-position: 0 -27px;
+}
+
+main .delete::after {
+  display: inline-block;
+  float: right;
+  content: "";
+  width: 16px;
+  height: 17px;
+  background: transparent url("images/icons_todos.png") 0 0 no-repeat;
+  background-position: 0 100%;
+}
+
+/* Toggle Navigation Bar */
+
+label {
+  cursor: pointer;
+}
+
+
+#toggle_nav:checked ~ main {
+  padding-left: 100px;
+}
+
+form {
+  display: none;
+  font-size: 16px;
+  color: #6e6e6e;
+}
+
+fieldset {
+  padding: 40px 30px;
+}
+
+form dl dt, form dl dd {
+  display: inline-block;
+  padding-bottom: 25px;
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  border: 1px solid #b3b3b3;
+  border-radius: 0;
+  height: 36px;
+  padding-left: 8px;
+  box-sizing: border-box;
+}
+
+form #title, form #day {
+  color: #000000;
+}
+
+form input {
+  width: 100%;
+}
+
+form select {
+  width: 30.5%;
+  background: none;
+  color: #8c8c8c;
+}
+
+.quarter{
+  float: left;
+  box-sizing: border-box;
+  width: 25%;
+}
+
+.three-quarters{
+  float: left;
+  box-sizing: border-box;
+  width: 75%;
+  max-width: 395px;
+}
+
+form textarea {
+  color: #8c8c8c;
+  padding-top: 8px;
+  width: 100%;
+  height: 144px;
+}
+
+button:first-of-type {
+  margin-left: 25%;
+}
+
+button {
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  width: 36%;
+  margin: 0 5px;
+  padding: 11px 0;
+  border-radius: 3px;
+  border: 0;
+  color: #ffffff;
+  background: #148fd5;
+}
+
+button:last-of-type {
+  margin-right: 0;
+}
+
+main #edit dt.no {
+  border-top-style: none;
+}
+
+/* Toggle Edit Form */
+
+#todo1:checked + div:before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#todo1:checked + div form {
+  display: block;
+  background: #ffffff;
+  position: absolute;
+  top: 110px;
+  left: 440px;
+}
+
+@media screen and (max-width: 768px) {
+
+  nav {
+    display: none;
+  }
+
+  #toggle_nav:checked + label + nav {
+    display: block;
+  }
+
+  main {
+    padding-right: 20px;
+  }
+
+  header label {
+    position: absolute;
+    left: 32px;
+    top: 23px;
+    content: "";
+    width: 23px;
+    height: 18px;
+    background: transparent url("images/icons_nav.png") 0 0 no-repeat;
+  }
+
+  #toggle_nav:checked + label {
+    display: block;
+    position: absolute;
+    left: 367px;
+    top: 23px;
+    content: "";
+    width: 23px;
+    height: 18px;
+    background: transparent url("images/icons_nav.png") 0 0 no-repeat;
+  }
+}

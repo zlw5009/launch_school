@@ -1,5 +1,3 @@
-require 'pry'
-
 class Bst
   attr_accessor :data, :left, :right
   
@@ -9,7 +7,6 @@ class Bst
 
   def insert(number)
     if number <= data
-      binding.pry
       left ? left.insert(number) : self.left = Bst.new(number)
     elsif number > data
       right ? right.insert(number) : self.right = Bst.new(number)

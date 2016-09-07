@@ -59,6 +59,11 @@ nav > div li label {
   color: #4CCEEF;
 }
 
+li.logo img {
+  width: 30px;
+  height: auto;
+}
+
 section.hero {
   width: 100%;
   text-align: right;

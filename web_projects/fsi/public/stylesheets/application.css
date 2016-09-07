@@ -1,0 +1,29 @@
+@import url("whitespace_reset.css");
+
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+header h1 {
+  font-size: 36px;
+  font-weight: 900;
+  text-align: center;
+  padding: 15px 0 10px 20px;
+  display: inline-block;
+}
+
+header ul {
+  float: right;
+  padding: 0 30px;
+  text-align: center;
+}
+
+header ul li {
+  display: inline-block;
+  padding: 42.5px 30px;
+}
+
+header a {
+  text-transform: uppercase;
+  color: #f02930;
+}

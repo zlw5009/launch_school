@@ -1,19 +1,24 @@
 <!doctype html>
 <html>
   <body>
-  <script src='rot13.js'>
-    // var cipher = '';
-    // var alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    // var string = 'z'
-    // var index = alphabet.indexOf(string[0]) + 13;
+  <script>
+    function isEmpty(value) {
+      var type = typeof value;
+      if (type === 'string') {
+        console.log(value.length === 0);
+      } else if (type === 'object') {
+        console.log(Object.keys(value).length === 0);
+      }
+    }
 
-    // if (index > 25) {
-    //   cipher += alphabet[index - 26]
-    // } else {
-    //   cipher += alphabet[index]
-    // }
+    isEmpty({});                 // true
+    isEmpty({ name: 'Janice' }); // false
 
-    // console.log(cipher);
+    isEmpty('');                 // true
+    isEmpty('Janice');           // false
+
+    isEmpty([]);                 // should return true
+    isEmpty(['Janice']);  
 
   </script>
 </body>

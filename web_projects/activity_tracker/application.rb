@@ -20,11 +20,13 @@ helpers do
   end
 
   def load_topics(subject_id)
-    @storage.all_topics(subject_id)
-  end
+    topics = @storage.all_topics(subject_id)
 
-  def load_subject_info(subject_id)
-    @storage.subject_info(subject_id)
+    if (topics.empty?)
+      topics = @storage.subject_name(subject_id)
+    end
+
+    topics
   end
 
   def new_topic(topic_name, subject_id)
@@ -52,7 +54,6 @@ end
 get '/subject/:id' do
   @subject_id = params[:id].to_i
   @all_topics = load_topics(@subject_id)
-  @subject_info = load_subject_info(@subject_id)
 
   erb :topics
 end
@@ -69,7 +70,6 @@ end
 get '/subject/:id/edit' do 
   @subject_id = params[:id].to_i
   @all_topics = load_topics(@subject_id)
-  @subject_info = load_subject_info(@subject_id)
 
   erb :edit_topics
 end
